@@ -42,7 +42,7 @@ public class AutoGrabTest extends OpMode {
             Robot.telemetry.addData("Target Angle", angle);
 
             Robot.wrist.setPos(angle + 90 > Robot.wrist.maxPos ? angle - 90 : angle + 90);
-            Robot.slides.setPos(Robot.slides.getPos() + Math.tan(Math.toRadians(ty)) * CAMERA_HEIGHT);
+//            Robot.slides.setPos(Robot.slides.getPos() + Math.tan(Math.toRadians(ty)) * CAMERA_HEIGHT);
 
             findingGrabPose = false;
         } else {

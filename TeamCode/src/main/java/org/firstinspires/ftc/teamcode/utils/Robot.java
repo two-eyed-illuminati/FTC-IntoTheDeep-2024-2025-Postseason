@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode.utils;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.utils.rr.MecanumDrive;
 
 //Allow configuration variables to be tuned without pushing code
 //with FTC Dashboard (https://acmerobotics.github.io/ftc-dashboard/features#configuration-variables)
@@ -27,6 +29,7 @@ public class Robot{
   public static double SLIDES_VELOCITY = 384.5 * 435.0 / 60.0; // Maximum velocity in encoder pulses per second for the slides
 
   //Mechanisms, IMU, etc.
+  public static MecanumDrive drive;
   public static ServoMechanism wrist;
   public static Limelight3A ll;
   public static DualMotorMechanism slides;
@@ -34,6 +37,8 @@ public class Robot{
   public static boolean initialized = false;
 
   public static void initialize(HardwareMap hardwareMap, Telemetry dsTelemetry) {
+    drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+
     Servo wristServo = hardwareMap.get(Servo.class, "wrist");
     wrist = new ServoMechanism(
         wristServo,
